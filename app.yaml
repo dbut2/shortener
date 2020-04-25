@@ -1,0 +1,3 @@
+service: shortener
+main: cmd/app/shortener.go
+runtime: go112
