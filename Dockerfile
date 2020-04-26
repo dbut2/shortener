@@ -9,4 +9,4 @@ COPY . .
 
 RUN go build cmd/app/shortener.go
 EXPOSE 8080
-RUN ./shortener
+CMD ["./shortener"]
