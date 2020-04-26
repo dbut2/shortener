@@ -8,6 +8,14 @@ type Router struct {
 	*chi.Mux
 }
 
+func (r *Router) AddRoutes() {
+	router := chi.NewRouter()
+
+	router.Get("/", home)
+
+	r.Mount("/", router)
+}
+
 func (r *Router) AddApiRoutes() {
 	router := chi.NewRouter()
 

@@ -12,6 +12,10 @@ type Entity struct {
 	Url string
 }
 
+func home(w http.ResponseWriter, r *http.Request) {
+	respondJSON(w, http.StatusOK, "home page")
+}
+
 func shorten(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
 

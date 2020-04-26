@@ -17,6 +17,7 @@ func main() {
 
 func start(port string) {
 	router := webapp.NewRouter()
+	router.AddRoutes()
 	router.AddApiRoutes()
 	http.ListenAndServe(":"+port, router)
 }
