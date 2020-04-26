@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: shortener
+  name: shortener
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shortener
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: shortener
+    spec:
+      containers:
+        - image: gcr.io/dbut-0/github.com/dbut2/shortener
+          imagePullPolicy: IfNotPresent
+          name: shortener-1
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: shortener
+  name: shortener-hpa-lrck
+  namespace: default
+spec:
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: shortener
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: shortener
+  name: shortener-service
+  namespace: default
+spec:
+  clusterIP: 10.0.15.73
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 30675
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: shortener
+  sessionAffinity: None
+  type: LoadBalancer
