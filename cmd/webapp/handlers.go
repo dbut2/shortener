@@ -42,7 +42,7 @@ func shorten(w http.ResponseWriter, r *http.Request) {
 
 	_, err = client.Put(ctx, k, e)
 	if err != nil {
-		panic(err.Error())
+		respondJSON(w, http.StatusInternalServerError, err.Error())
 	}
 
 	respondJSON(w, http.StatusOK, "Ok")
