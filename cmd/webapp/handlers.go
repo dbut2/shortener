@@ -40,7 +40,10 @@ func shorten(w http.ResponseWriter, r *http.Request) {
 	e.Code = code
 	e.Url = url
 
-	client.Put(ctx, k, e)
+	_, err = client.Put(ctx, k, e)
+	if err != nil {
+		panic(err.Error())
+	}
 
 	respondJSON(w, http.StatusOK, "Ok")
 
