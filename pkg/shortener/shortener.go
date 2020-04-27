@@ -19,8 +19,8 @@ func Shorten(url string, code string) error {
 	if err != nil {
 		return err
 	}
-	
-	k := datastore.NameKey("Url", code, nil)
+
+	k := datastore.IncompleteKey("Url", nil)
 
 	e := new(Url)
 

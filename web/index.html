@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="static/shorten.js"></script>
-        <title>Shortener</title>
-    </head>
-    <body>
-        <h1>Witness</h1>
-        <form onsubmit="return shorten()">
-            <input type="hidden" name="local" value="true" />
-            <div>
-                <input type="text" id="url" placeholder="Paste URL to shorten" />
-                <input type="text" id="code" placeholder="Code" />
-                <input type="text" id="link" />
-                <div>
-                    <input type="submit" value="Shorten">
-                </div>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://projects.dylanbutler.net/cab/assets/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://projects.dylanbutler.net/cab/assets/style.css" />
+    <script type="text/javascript" src="http://projects.dylanbutler.net/cab/assets/jquery.js"></script>
+    <script type="text/javascript" src="http://projects.dylanbutler.net/cab/assets/bootstrap.js"></script>
+    <script src="static/shorten.js"></script>
+    <title>URL Shortener</title>
+</head>
+<body>
+<div class="container">
+    <form onsubmit="return shorten()">
+        <div class="input-group input-group-lg">
+            <input class="form-control url" type="text" id="url" placeholder="Paste URL to shorten" />
+            <div class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="Shorten">
             </div>
-        </form>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                if ($('#url').val() != '') {
-                    $('#url').select();
-                }
-            });
-        </script>
-    </body>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if ($('#url').val() != '') {
+                $('#url').select();
+            }
+        });
+    </script>
+</div>
+</body>
 </html>
