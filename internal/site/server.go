@@ -7,7 +7,6 @@ import (
 	"github.com/dbut2/shortener/pkg/url"
 	"github.com/go-chi/chi"
 	"net/http"
-	"runtime"
 	"strings"
 )
 
@@ -90,7 +89,6 @@ func (s *Server) Run(port string) {
 }
 
 func respondError(w http.ResponseWriter, err error) {
-	_,file,line,_:=runtime.Caller(1);fmt.Printf("Printed at %s:%d\n",file,line)
 	respondJSON(w, http.StatusInternalServerError, err.Error())
 }
 

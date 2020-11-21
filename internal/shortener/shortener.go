@@ -13,7 +13,7 @@ type Shortener struct {
 }
 
 func NewShortener() (*Shortener, error) {
-	client, err := datastore.NewClient(context.Background(), "dylanbutler")
+	client, err := datastore.NewClient(context.Background(), "dbut-butla")
 	if err != nil {
 		return nil, err
 	}
