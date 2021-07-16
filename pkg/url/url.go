@@ -21,7 +21,7 @@ type URL struct {
 }
 
 type Parameter struct {
-	Key string
+	Key   string
 	Value string
 }
 

@@ -4,11 +4,16 @@ lint:
 
 .PHONY: build
 build:
-	go build -o shortener ./cmd/shortener
+	go build -o server ./cmd/server
+	go build -o shortener ./cmd/cli
+
+.PHONY: server
+server:
+	go run ./cmd/server
 
 .PHONY: clean
 clean:
-	rm -f shortener coverage.out coverage.html
+	rm -f server shortener coverage.out coverage.html
 	go mod tidy
 	go mod vendor
 
@@ -38,4 +43,5 @@ html:
 
 .PHONY: vendor
 vendor:
+	go mod tidy
 	go mod vendor

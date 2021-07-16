@@ -1,2 +1,4 @@
-runtime: go114
-main: cmd/shortener
+runtime: go115
+main: cmd/server
+
+service: shortener
