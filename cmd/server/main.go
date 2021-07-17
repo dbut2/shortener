@@ -20,6 +20,7 @@ func main() {
 	}
 
 	c := config.Load(*configPath)
+	c.Address = ":"+port
 	err := server.Run(c)
 	if err != nil {
 		panic(err.Error())

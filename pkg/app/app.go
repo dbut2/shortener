@@ -29,14 +29,14 @@ func New(c config.Config) *App {
 }
 
 func (a *App) Shorten(request model.Shorten) {
-	_, err := a.db.Query("INSERT INTO links (slug, url) VALUES (?, ?)", request.Code, request.Url)
+	_, err := a.db.Query("INSERT INTO links (code, url) VALUES (?, ?)", request.Code, request.Url)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
 }
 
 func (a *App) Lengthen(code string) model.Shorten {
-	row := a.db.QueryRow("SELECT slug as Code, url as URl FROM links WHERE slug = ?", code)
+	row := a.db.QueryRow("SELECT code as Code, url as URl FROM links WHERE code = ?", code)
 	var s model.Shorten
 	err := row.Scan(&s.Code, &s.Url)
 	if err != nil {

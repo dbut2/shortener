@@ -5,11 +5,15 @@ lint:
 .PHONY: build
 build:
 	go build -o server ./cmd/server
-	go build -o shortener ./cmd/cli
+	go build -o shorten ./cmd/cli
 
 .PHONY: server
 server:
 	go run ./cmd/server
+
+.PHONY: cli
+cli:
+	go run ./cmd/cli
 
 .PHONY: clean
 clean:
@@ -22,11 +26,7 @@ rebuild: clean build
 
 .PHONY: deploy
 deploy:
-	gcloud app deploy app.yaml
-
-.PHONY: shortener
-shortener: rebuild
-	./shortener
+	gcloud app deploy app.yaml dispatch.yaml
 
 .PHONY: test
 test:
